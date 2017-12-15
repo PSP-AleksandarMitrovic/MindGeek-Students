@@ -9,8 +9,9 @@
 namespace App\Modules\Student\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
-use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesOutputContract;
+use App\Modules\Student\Services\CalculateStudentsGrades;
+use App\Modules\Student\Services\SendStudentGrades;
+use RuntimeException;
 
 /**
  * Class StudentGradeController
@@ -19,25 +20,43 @@ use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesOutputContract;
 class StudentGradeController extends Controller
 {
     /**
+     * @var CalculateStudentsGrades
+     */
+    private $calculatorService;
+
+    /**
+     * @var SendStudentGrades
+     */
+    private $outputService;
+
+    /**
      * StudentGradeController constructor.
      *
-     * @param SchoolBoardGradesCalculateContract $calculatorService
-     * @param SchoolBoardGradesOutputContract $outputService
+     * @param CalculateStudentsGrades $calculatorService
+     * @param SendStudentGrades $outputService
      */
-    public function __construct(SchoolBoardGradesCalculateContract $calculatorService,
-                                SchoolBoardGradesOutputContract $outputService)
+    public function __construct(CalculateStudentsGrades $calculatorService,
+                                SendStudentGrades $outputService)
     {
-        $this->calculator = $calculatorService;
-        $this->calculator = $outputService;
+        $this->calculatorService = $calculatorService;
+        $this->outputService = $outputService;
     }
 
     /**
-     * Calculate
+     * Send student's report
      *
      * @param $id
+     * @return string
      */
-    public function calculate($id)
+    public function sendReport($id)
     {
+        try {
+            $data = $this->calculatorService->calculate($id)->get();
 
+            return $this->outputService->send($data);
+
+        } catch (RuntimeException $e) {
+            return $e->getMessage();
+        }
     }
 }

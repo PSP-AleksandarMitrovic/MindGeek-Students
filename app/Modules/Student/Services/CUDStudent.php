@@ -10,16 +10,35 @@ namespace App\Modules\Student\Services;
 
 
 use App\Modules\Student\Contracts\CUDStudentContract;
+use App\Modules\Student\Models\Student;
 
+/**
+ * Class CUDStudent
+ * @package App\Modules\Student\Services
+ */
 class CUDStudent implements CUDStudentContract
 {
+    /**
+     * @var
+     */
+    private $student;
+
+    /**
+     * CUDStudent constructor.
+     * @param $student
+     */
+    public function __construct(Student $student)
+    {
+        $this->student = $student;
+    }
+
     /**
      * @param $data
      * @return mixed
      */
     public function store($data)
     {
-        // TODO: Implement store() method.
+        return $this->student->create($data);
     }
 
     /**
@@ -29,7 +48,12 @@ class CUDStudent implements CUDStudentContract
      */
     public function update($id, $data)
     {
-        // TODO: Implement update() method.
+        // If Student is not found, throw 404
+        $student = $this->student->findOrFail($id);
+
+        $student->update($data);
+
+        return $student->fresh();
     }
 
     /**
@@ -38,6 +62,9 @@ class CUDStudent implements CUDStudentContract
      */
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        // If Image is not found, throw 404
+        $student = $this->student->findOrFail($id);
+
+        $student->delete();
     }
 }

@@ -16,6 +16,7 @@ class CreateSchoolBoard extends Migration
         Schema::create('school_boards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->string('output', 50);
             $table->timestamps();
         });
     }

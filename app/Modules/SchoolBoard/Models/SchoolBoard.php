@@ -12,6 +12,7 @@ class SchoolBoard extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'output'
     ];
 }

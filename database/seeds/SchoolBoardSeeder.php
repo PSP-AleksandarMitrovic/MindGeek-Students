@@ -13,12 +13,14 @@ class SchoolBoardSeeder extends Seeder
     {
         \App\Modules\SchoolBoard\Models\SchoolBoard::create(
             [
-                "name" => "CSM"
+                "name" => "CSM",
+                "output" => "JSON"
             ]
         );
         \App\Modules\SchoolBoard\Models\SchoolBoard::create(
             [
-                "name" => "CSMB"
+                "name" => "CSMB",
+                "output" => "XML"
             ]
         );
     }

@@ -13,10 +13,10 @@ use App\Modules\Student\Contracts\RepositoryStudentContract;
 use App\Modules\Student\Models\Student;
 
 /**
- * Class StudentRepository
+ * Class RepositoryStudent
  * @package App\Modules\Student\Services
  */
-class StudentRepository implements RepositoryStudentContract
+class RepositoryStudent implements RepositoryStudentContract
 {
     /**
      * @var Student

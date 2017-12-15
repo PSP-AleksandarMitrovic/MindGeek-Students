@@ -176,7 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ModuleServiceProvider::class
+        App\Providers\ModuleServiceProvider::class,
+        App\Modules\Student\Providers\StudentServiceProvider::class,
+        App\Modules\SchoolBoard\Providers\CalculateServiceProvider::class,
+        App\Modules\SchoolBoard\Providers\OutputServiceProvider::class
 
     ],
 

@@ -15,4 +15,14 @@
 
 <p>php artisan migrate</p>
 <p>php artisan db:seed</p>
+
+<p>Worked from 11h - 15:30h</p>
+<p>Still to do:</p>
+
+    <p><b>Average grade calulcation and JSON, XML formatter</b></p>
+    <p><b>PHPUnit tests</b></p>
+   
+<p>Needed 2-3 hours more</p>
+       
+    
     

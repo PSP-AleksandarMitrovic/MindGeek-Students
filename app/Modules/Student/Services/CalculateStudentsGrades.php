@@ -14,6 +14,8 @@ namespace App\Modules\Student\Services;
  * @package App\Modules\Student\Services
  */
 use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
+use App\Modules\Student\Contracts\CUDStudentContract;
+use App\Modules\Student\Contracts\RepositoryStudentContract;
 
 /**
  * Class CalculateStudentsGrades
@@ -21,6 +23,10 @@ use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
  */
 class CalculateStudentsGrades
 {
+    /**
+     * @var
+     */
+    private $data;
     /**
      * @var SchoolBoardGradesCalculateContract
      */
@@ -35,16 +41,17 @@ class CalculateStudentsGrades
      * @var CUDStudent
      */
     private $cudStudent;
+
     /**
      * StudentGradeController constructor.
      *
      * @param SchoolBoardGradesCalculateContract $calculatorService
-     * @param RepositoryStudent $studentRepository
-     * @param CUDStudent $cudStudent
+     * @param RepositoryStudentContract $studentRepository
+     * @param CUDStudentContract $cudStudent
      */
     public function __construct(SchoolBoardGradesCalculateContract $calculatorService,
-                                RepositoryStudent $studentRepository,
-                                CUDStudent $cudStudent)
+                                RepositoryStudentContract $studentRepository,
+                                CUDStudentContract $cudStudent)
     {
         $this->calculatorService = $calculatorService;
         $this->studentRepository = $studentRepository;
@@ -69,8 +76,6 @@ class CalculateStudentsGrades
      */
     public function get()
     {
-        // Todo
-
-        return [];
+        return $this->data;
     }
 }

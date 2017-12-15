@@ -35,7 +35,7 @@ class CalculateServiceProvider extends ServiceProvider
             // ... get repository
             $studentRepository = $app->make('App\Modules\Student\Contracts\RepositoryStudentContract');
             // ... then we need student ID
-            $schoolBoard = $studentRepository->getById($request->id, [], 'schoolBoard');
+            $schoolBoard = $studentRepository->getByIdRelation($request->id, 'schoolBoard');
             // ...correct calculator by SchoolBoard output property
             $class = "App\\Modules\\SchoolBoard\\Services\\" . $schoolBoard->name . "GradesCalculate";
             // ... so we can return right service

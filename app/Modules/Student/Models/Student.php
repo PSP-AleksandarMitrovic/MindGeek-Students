@@ -2,13 +2,13 @@
 
 namespace App\Modules\Student\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Common\Models\BaseModel;
 
 /**
  * Class Student
  * @package App\Modules\Student\Models
  */
-class Student extends Model
+class Student extends BaseModel
 {
     /**
      * The attributes that are mass assignable.
@@ -17,6 +17,16 @@ class Student extends Model
      */
     protected $fillable = [
         'name', 'school_board_id'
+    ];
+
+    /**
+     * The model relations
+     *
+     * @var array
+     */
+    protected $modelRelations = [
+        'grades',
+        'schoolBoard'
     ];
 
     /**

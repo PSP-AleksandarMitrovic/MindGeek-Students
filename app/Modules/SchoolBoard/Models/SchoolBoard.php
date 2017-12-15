@@ -2,9 +2,9 @@
 
 namespace App\Modules\SchoolBoard\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Common\Models\BaseModel;
 
-class SchoolBoard extends Model
+class SchoolBoard extends BaseModel
 {
     /**
      * The attributes that are mass assignable.

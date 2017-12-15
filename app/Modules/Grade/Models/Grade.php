@@ -2,9 +2,9 @@
 
 namespace App\Modules\Grade\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Common\Models\BaseModel;
 
-class Grade extends Model
+class Grade extends BaseModel
 {
     /**
      * The attributes that are mass assignable.

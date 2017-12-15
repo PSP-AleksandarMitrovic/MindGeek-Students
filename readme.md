@@ -9,10 +9,10 @@
 
 ## About Laravel
 
-Required XAMPP or some server
-MYSQL database credentials:
-  dbname:mindgeek
+<p>Required XAMPP or some server</p>
+<p>MYSQL database credentials:</p>
+<p>dbname:mindgeek</p>
 
-php artisan migrate
-php artisan db:seed
+<p>php artisan migrate</p>
+<p>php artisan db:seed</p>
     

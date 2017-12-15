@@ -17,8 +17,6 @@ class CreateStudentTable extends Migration
             $table->increments('id');
             $table->integer('school_board_id')->unsigned();
             $table->string('name', 255);
-            $table->float('average_grade')->nullable();
-            $table->boolean('passed')->default(false);
             $table->timestamps();
 
             $table->foreign('school_board_id')->references('id')->on('school_boards')

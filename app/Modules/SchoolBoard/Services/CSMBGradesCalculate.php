@@ -9,28 +9,41 @@
 namespace App\Modules\SchoolBoard\Services;
 
 
-use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
+use App\Modules\Student\Models\Student;
 
-class CSMBGradesCalculate implements SchoolBoardGradesCalculateContract
+/**
+ * Class CSMBGradesCalculate
+ * @package App\Modules\SchoolBoard\Services
+ */
+class CSMBGradesCalculate extends BaseGradesCalculate
 {
     /**
      * Calculate student average grade
      *
-     * @param $student_id
+     * @param Student $student
      * @return mixed
      */
-    public function calculate($student_id)
+    public function calculate(Student $student): float
     {
-        // TODO: Implement calculate() method.
+        if ($student->grades->count() > 2)
+            $this->removeLowestGrade($student);
+        return parent::calculate($student);
     }
 
     /**
-     * Check if students passes with average grades
-     *
-     * @return mixed
+     * @param Student $student
      */
-    public function hasPassed()
+    public function removeLowestGrade(Student $student)
     {
-        // TODO: Implement hasPassed() method.
+        $min = $student->grades->first()->grade;
+        $min_key = 0;
+        foreach ($student->grades as $key => $grade) {
+            if ($grade->grade < $min) {
+                $min = $grade->grade;
+                $min_key = $key;
+            }
+        }
+
+        unset($student->grades[$min_key]);
     }
 }

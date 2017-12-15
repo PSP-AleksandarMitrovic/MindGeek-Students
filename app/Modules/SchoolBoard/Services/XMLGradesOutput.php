@@ -10,6 +10,8 @@ namespace App\Modules\SchoolBoard\Services;
 
 
 use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesOutputContract;
+use Illuminate\Contracts\Support\Arrayable;
+use SoapBox\Formatter\Formatter;
 
 class XMLGradesOutput implements SchoolBoardGradesOutputContract
 {
@@ -19,8 +21,12 @@ class XMLGradesOutput implements SchoolBoardGradesOutputContract
      * @param $data
      * @return mixed
      */
-    public function output($data)
+    public function output(Arrayable $data)
     {
-        // TODO: Implement output() method.
+        $formatter = Formatter::make($data->toArray(), Formatter::ARR);
+
+        return response($formatter->toXml(), 200, [
+            'Content-Type' => 'text/xml'
+        ]);
     }
 }

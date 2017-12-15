@@ -9,28 +9,11 @@
 namespace App\Modules\SchoolBoard\Services;
 
 
-use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
-
-class CSMGradesCalculate implements SchoolBoardGradesCalculateContract
+/**
+ * Class CSMGradesCalculate
+ * @package App\Modules\SchoolBoard\Services
+ */
+class CSMGradesCalculate extends BaseGradesCalculate
 {
-    /**
-     * Calculate student average grade
-     *
-     * @param $student_id
-     * @return mixed
-     */
-    public function calculate($student_id)
-    {
-        // TODO: Implement calculate() method.
-    }
-
-    /**
-     * Check if students passes with average grades
-     *
-     * @return mixed
-     */
-    public function hasPassed()
-    {
-        // TODO: Implement hasPassed() method.
-    }
+    //
 }

@@ -8,6 +8,7 @@
 
 namespace App\Modules\SchoolBoard\Contracts;
 
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Interface SchoolBoardGradesOutputContract
@@ -21,5 +22,5 @@ interface SchoolBoardGradesOutputContract
      * @param $data
      * @return mixed
      */
-    public function output($data);
+    public function output(Arrayable $data);
 }

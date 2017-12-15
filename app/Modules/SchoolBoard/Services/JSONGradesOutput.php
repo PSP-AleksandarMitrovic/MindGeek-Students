@@ -10,6 +10,7 @@ namespace App\Modules\SchoolBoard\Services;
 
 
 use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesOutputContract;
+use Illuminate\Contracts\Support\Arrayable;
 
 class JSONGradesOutput implements SchoolBoardGradesOutputContract
 {
@@ -19,8 +20,8 @@ class JSONGradesOutput implements SchoolBoardGradesOutputContract
      * @param $data
      * @return mixed
      */
-    public function output($data)
+    public function output(Arrayable $data)
     {
-        // TODO: Implement output() method.
+        return response()->json($data->toArray());
     }
 }

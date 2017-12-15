@@ -8,6 +8,7 @@
 
 namespace App\Modules\SchoolBoard\Contracts;
 
+use App\Modules\Student\Models\Student;
 
 /**
  * Interface SchoolBoardGradesCalculateContract
@@ -18,10 +19,11 @@ interface SchoolBoardGradesCalculateContract
     /**
      * Calculate student average grade
      *
-     * @param $student_id
+     * @param Student $student
      * @return mixed
+     * @internal param $student_id
      */
-    public function calculate($student_id);
+    public function calculate(Student $student);
 
     /**
      * Check if students passes with average grades

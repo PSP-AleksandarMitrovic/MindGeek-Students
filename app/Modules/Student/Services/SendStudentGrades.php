@@ -10,6 +10,7 @@ namespace App\Modules\Student\Services;
 
 
 use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesOutputContract;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Class SendStudentGrades
@@ -32,10 +33,8 @@ class SendStudentGrades
        $this->outputService = $outputService;
     }
 
-    public function send($data)
+    public function send(Arrayable $data)
     {
-        // Todo
-
-        return $data;
+        return $this->outputService->output($data);
     }
 }

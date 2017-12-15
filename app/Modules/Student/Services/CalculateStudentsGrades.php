@@ -14,8 +14,8 @@ namespace App\Modules\Student\Services;
  * @package App\Modules\Student\Services
  */
 use App\Modules\SchoolBoard\Contracts\SchoolBoardGradesCalculateContract;
-use App\Modules\Student\Contracts\CUDStudentContract;
 use App\Modules\Student\Contracts\RepositoryStudentContract;
+use App\Modules\Student\Transporters\StudentResult;
 
 /**
  * Class CalculateStudentsGrades
@@ -23,6 +23,10 @@ use App\Modules\Student\Contracts\RepositoryStudentContract;
  */
 class CalculateStudentsGrades
 {
+    /**
+     * @var StudentResult
+     */
+    private $result;
     /**
      * @var
      */
@@ -38,24 +42,19 @@ class CalculateStudentsGrades
     private $studentRepository;
 
     /**
-     * @var CUDStudent
-     */
-    private $cudStudent;
-
-    /**
      * StudentGradeController constructor.
      *
      * @param SchoolBoardGradesCalculateContract $calculatorService
      * @param RepositoryStudentContract $studentRepository
-     * @param CUDStudentContract $cudStudent
+     * @param StudentResult $result
      */
     public function __construct(SchoolBoardGradesCalculateContract $calculatorService,
                                 RepositoryStudentContract $studentRepository,
-                                CUDStudentContract $cudStudent)
+                                StudentResult $result)
     {
         $this->calculatorService = $calculatorService;
         $this->studentRepository = $studentRepository;
-        $this->cudStudent = $cudStudent;
+        $this->result = $result;
     }
 
     /**
@@ -66,7 +65,19 @@ class CalculateStudentsGrades
      */
     public function calculate($student_id)
     {
-        // Todo
+        $student = $this->studentRepository->getByIdWithRelations($student_id, ['grades']);
+
+        $avg = $this->calculatorService->calculate($student);
+
+        $hasPassed = $this->calculatorService->hasPassed();
+
+        $this->result->set([
+            "id" => $student->id,
+            "name" => $student->name,
+            "grades" => $student->grades->pluck("grade")->toArray(),
+            "averageGrade" => $avg,
+            "passed" => $hasPassed
+        ]);
 
         return $this;
     }
@@ -76,6 +87,6 @@ class CalculateStudentsGrades
      */
     public function get()
     {
-        return $this->data;
+        return $this->result;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
-Route::get('/v1/students', function(){
-    return "test radi";
+Route::group(['prefix' => '/v1/students'], function(){
+
+    Route::get('/{id}/calculate_grades', 'StudentGradeController@calculate');
+
 });

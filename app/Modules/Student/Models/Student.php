@@ -26,4 +26,12 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Modules\Grade\Models\Grade');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function schoolBoard()
+    {
+        return $this->belongsTo('App\Modules\SchoolBoard\Models\SchoolBoard');
+    }
 }

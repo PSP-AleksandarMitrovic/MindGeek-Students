@@ -16,13 +16,9 @@
 <p>php artisan migrate</p>
 <p>php artisan db:seed</p>
 
-<p>Worked from 11h - 15:30h</p>
-<p>Still to do:</p>
+Test endpoint:
+    http://localhost/mindgeek/public/api/v1/students/1/grades_report
 
-   <p>- Average grade calulcation and JSON, XML formatter</p>
-   <p>- PHPUnit tests</p>
-   
-<p>Needed 2-3 hours more</p>
        
     
     

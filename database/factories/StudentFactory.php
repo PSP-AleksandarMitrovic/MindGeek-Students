@@ -13,13 +13,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Modules\User\Models\User::class, function (Faker $faker) {
-    static $password;
+$factory->define(App\Modules\Student\Models\Student::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'school_board_id' => $faker->randomElement(
+            \App\Modules\SchoolBoard\Models\SchoolBoard::all()->pluck('id')->toArray()
+        )
     ];
 });
